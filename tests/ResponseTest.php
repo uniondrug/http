@@ -15,9 +15,8 @@
 namespace Tests;
 
 use DateTime;
-use FastD\Http\Cookie;
-use FastD\Http\Response;
-use Psr\Http\Message\ResponseInterface;
+use Uniondrug\Http\Cookie;
+use Uniondrug\Http\Response;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
@@ -91,7 +90,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testResponseCookie()
     {
         $this->response->withCookieParams([
-            'foo' => Cookie::normalizer('foo', 'bar')
+            'foo' => Cookie::normalizer('foo', 'bar'),
         ]);
         $this->response->withCookie('age', 11);
         $this->outputResponse($this->response);

@@ -9,11 +9,11 @@
 
 namespace Uniondrug\Http;
 
-
 use RuntimeException;
 
 /**
  * Class HttpException
+ *
  * @package Uniondrug\Http\Exception
  */
 class HttpException extends RuntimeException
@@ -25,8 +25,9 @@ class HttpException extends RuntimeException
 
     /**
      * HttpException constructor.
+     *
      * @param string $message
-     * @param int $statusCode
+     * @param int    $statusCode
      */
     public function __construct($message = "Server Interval Error", $statusCode = 500)
     {

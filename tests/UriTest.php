@@ -1,5 +1,6 @@
 <?php
-use FastD\Http\Uri;
+
+use Uniondrug\Http\Uri;
 
 /**
  *
@@ -48,14 +49,14 @@ class UriTest extends PHPUnit_Framework_TestCase
     {
         $url = 'https://user:pass@local.example.com:3001/foo?bar=baz#quz';
         $uri = new Uri($url);
-        $this->assertEquals($url, (string)$uri);
+        $this->assertEquals($url, (string) $uri);
     }
 
     public function testUriToPathInfo()
     {
         $url = '/foo?bar=baz#quz';
         $uri = new Uri($url);
-        $this->assertEquals($url, (string)$uri);
+        $this->assertEquals($url, (string) $uri);
         $this->assertEquals('/foo', $uri->getPath());
     }
 
@@ -85,19 +86,19 @@ class UriTest extends PHPUnit_Framework_TestCase
         $uri = new Uri($url);
         $this->assertEquals([
             'bar' => 'baz',
-            'foo' => 'bar'
+            'foo' => 'bar',
         ], $uri->getQuery());
 
         $url = 'https://local.example.com?foo=' . rawurlencode('!%2') . '&' . http_build_query([
-            'vars' => [
-                'a',
-                'b',
-                'c',
-            ],
-        ]);
+                'vars' => [
+                    'a',
+                    'b',
+                    'c',
+                ],
+            ]);
         $uri = new Uri($url);
         $this->assertEquals([
-            'foo' => '!%2',
+            'foo'  => '!%2',
             'vars' => [
                 'a',
                 'b',
@@ -111,7 +112,7 @@ class UriTest extends PHPUnit_Framework_TestCase
         $url = 'https://example/service/rest.htm';
         $uri = new Uri($url);
         $this->assertEquals(443, $uri->getPort());
-        $this->assertEquals((string)$uri, $url);
+        $this->assertEquals((string) $uri, $url);
     }
 
     public function testStandardPort()

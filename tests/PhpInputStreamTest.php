@@ -1,5 +1,6 @@
 <?php
-use FastD\Http\PhpInputStream;
+
+use Uniondrug\Http\PhpInputStream;
 
 /**
  *
@@ -21,7 +22,7 @@ class PhpInputStreamTest extends PHPUnit_Framework_TestCase
         $this->stream = new PhpInputStream('php://temp', 'wr');
 
         $this->stream->write(http_build_query([
-            'age' => 11
+            'age' => 11,
         ]));
     }
 
@@ -32,7 +33,7 @@ class PhpInputStreamTest extends PHPUnit_Framework_TestCase
 
         parse_str($content, $_POST);
         $this->assertEquals([
-            'age' => 11
+            'age' => 11,
         ], $_POST);
     }
 }

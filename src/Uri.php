@@ -9,8 +9,8 @@
 
 namespace Uniondrug\Http;
 
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
+use Psr\Http\Message\UriInterface;
 
 /**
  * Class Uri

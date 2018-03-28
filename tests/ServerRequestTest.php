@@ -1,6 +1,7 @@
 <?php
-use FastD\Http\PhpInputStream;
-use FastD\Http\ServerRequest;
+
+use Uniondrug\Http\PhpInputStream;
+use Uniondrug\Http\ServerRequest;
 
 /**
  *
@@ -20,19 +21,19 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
     public function dataFilesFromGlobals()
     {
         return [
-            'file' => [
-                'name' => 'MyFile.txt',
-                'type' => 'text/plain',
+            'file'  => [
+                'name'     => 'MyFile.txt',
+                'type'     => 'text/plain',
                 'tmp_name' => '/tmp/php/php1h4j1o',
-                'error' => UPLOAD_ERR_OK,
-                'size' => 123,
+                'error'    => UPLOAD_ERR_OK,
+                'size'     => 123,
             ],
             'files' => [
-                'name' => [
+                'name'     => [
                     'MyFile.txt',
                     'MyFile2.txt',
                 ],
-                'type' => [
+                'type'     => [
                     'text/plain',
                     'text/plain',
                 ],
@@ -40,30 +41,30 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
                     '/tmp/php/php1h4j1o',
                     '/tmp/php/php1h4j1o',
                 ],
-                'error' => [
+                'error'    => [
                     UPLOAD_ERR_OK,
-                    UPLOAD_ERR_OK
+                    UPLOAD_ERR_OK,
                 ],
-                'size' => [
+                'size'     => [
                     123,
-                    123
+                    123,
                 ],
-            ]
+            ],
         ];
     }
 
     public function dataQueryFromGlobals()
     {
         return [
-            'id' => 10,
+            'id'   => 10,
             'user' => 'foo',
         ];
     }
 
     public function dataBodyFromGlobals()
     {
-        return  [
-            'name' => 'Pesho',
+        return [
+            'name'  => 'Pesho',
             'email' => 'pesho@example.com',
         ];
     }
@@ -71,51 +72,51 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
     public function dataCookiesFromGlobals()
     {
         return [
-            'logged-in' => 'yes!'
+            'logged-in' => 'yes!',
         ];
     }
 
     public function dataServerFromGlobals()
     {
-        return  [
-            'PHP_SELF' => '/blog/article.php',
-            'GATEWAY_INTERFACE' => 'CGI/1.1',
-            'SERVER_ADDR' => 'Server IP: 217.112.82.20',
-            'SERVER_NAME' => 'www.blakesimpson.co.uk',
-            'SERVER_SOFTWARE' => 'Apache/2.2.15 (Win32) JRun/4.0 PHP/5.2.13',
-            'SERVER_PROTOCOL' => 'HTTP/1.0',
-            'REQUEST_METHOD' => 'POST',
-            'REQUEST_TIME' => 'Request start time: 1280149029',
-            'QUERY_STRING' => 'id=10&user=foo',
-            'DOCUMENT_ROOT' => '/path/to/your/server/root/',
-            'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'HTTP_ACCEPT_CHARSET' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+        return [
+            'PHP_SELF'             => '/blog/article.php',
+            'GATEWAY_INTERFACE'    => 'CGI/1.1',
+            'SERVER_ADDR'          => 'Server IP: 217.112.82.20',
+            'SERVER_NAME'          => 'www.blakesimpson.co.uk',
+            'SERVER_SOFTWARE'      => 'Apache/2.2.15 (Win32) JRun/4.0 PHP/5.2.13',
+            'SERVER_PROTOCOL'      => 'HTTP/1.0',
+            'REQUEST_METHOD'       => 'POST',
+            'REQUEST_TIME'         => 'Request start time: 1280149029',
+            'QUERY_STRING'         => 'id=10&user=foo',
+            'DOCUMENT_ROOT'        => '/path/to/your/server/root/',
+            'HTTP_ACCEPT'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'HTTP_ACCEPT_CHARSET'  => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
             'HTTP_ACCEPT_ENCODING' => 'gzip,deflate',
             'HTTP_ACCEPT_LANGUAGE' => 'en-gb,en;q=0.5',
-            'HTTP_CONNECTION' => 'keep-alive',
-            'HTTP_HOST' => 'www.blakesimpson.co.uk',
-            'HTTP_REFERER' => 'http://previous.url.com',
-            'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
-            'HTTPS' => '1',
-            'REMOTE_ADDR' => '193.60.168.69',
-            'REMOTE_HOST' => 'Client server\'s host name',
-            'REMOTE_PORT' => '5390',
-            'SCRIPT_FILENAME' => '/path/to/this/script.php',
-            'SERVER_ADMIN' => 'webmaster@blakesimpson.co.uk',
-            'SERVER_PORT' => '80',
-            'SERVER_SIGNATURE' => 'Version signature: 5.123',
-            'SCRIPT_NAME' => '/blog/article.php',
-            'REQUEST_URI' => '/blog/article.php?id=10&user=foo',
+            'HTTP_CONNECTION'      => 'keep-alive',
+            'HTTP_HOST'            => 'www.blakesimpson.co.uk',
+            'HTTP_REFERER'         => 'http://previous.url.com',
+            'HTTP_USER_AGENT'      => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
+            'HTTPS'                => '1',
+            'REMOTE_ADDR'          => '193.60.168.69',
+            'REMOTE_HOST'          => 'Client server\'s host name',
+            'REMOTE_PORT'          => '5390',
+            'SCRIPT_FILENAME'      => '/path/to/this/script.php',
+            'SERVER_ADMIN'         => 'webmaster@blakesimpson.co.uk',
+            'SERVER_PORT'          => '80',
+            'SERVER_SIGNATURE'     => 'Version signature: 5.123',
+            'SCRIPT_NAME'          => '/blog/article.php',
+            'REQUEST_URI'          => '/blog/article.php?id=10&user=foo',
         ];
     }
 
     public function dataHeadersFromGlobals()
     {
         return [
-            'accept' => [
+            'accept'          => [
                 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             ],
-            'accept_charset' => [
+            'accept_charset'  => [
                 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
             ],
             'accept_encoding' => [
@@ -124,16 +125,16 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
             'accept_language' => [
                 'en-gb,en;q=0.5',
             ],
-            'connection' => [
+            'connection'      => [
                 'keep-alive',
             ],
-            'host' => [
+            'host'            => [
                 'www.blakesimpson.co.uk',
             ],
-            'referer' => [
+            'referer'         => [
                 'http://previous.url.com',
             ],
-            'user_agent' => [
+            'user_agent'      => [
                 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
             ],
         ];
@@ -141,35 +142,35 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
 
     public function dataPUTServerFromGlobals()
     {
-        return  [
-            'PHP_SELF' => '/blog/article.php',
-            'GATEWAY_INTERFACE' => 'CGI/1.1',
-            'SERVER_ADDR' => 'Server IP: 217.112.82.20',
-            'SERVER_NAME' => 'www.blakesimpson.co.uk',
-            'SERVER_SOFTWARE' => 'Apache/2.2.15 (Win32) JRun/4.0 PHP/5.2.13',
-            'SERVER_PROTOCOL' => 'HTTP/1.0',
-            'REQUEST_METHOD' => 'PUT',
-            'REQUEST_TIME' => 'Request start time: 1280149029',
-            'QUERY_STRING' => 'id=10&user=foo',
-            'DOCUMENT_ROOT' => '/path/to/your/server/root/',
-            'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'HTTP_ACCEPT_CHARSET' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+        return [
+            'PHP_SELF'             => '/blog/article.php',
+            'GATEWAY_INTERFACE'    => 'CGI/1.1',
+            'SERVER_ADDR'          => 'Server IP: 217.112.82.20',
+            'SERVER_NAME'          => 'www.blakesimpson.co.uk',
+            'SERVER_SOFTWARE'      => 'Apache/2.2.15 (Win32) JRun/4.0 PHP/5.2.13',
+            'SERVER_PROTOCOL'      => 'HTTP/1.0',
+            'REQUEST_METHOD'       => 'PUT',
+            'REQUEST_TIME'         => 'Request start time: 1280149029',
+            'QUERY_STRING'         => 'id=10&user=foo',
+            'DOCUMENT_ROOT'        => '/path/to/your/server/root/',
+            'HTTP_ACCEPT'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'HTTP_ACCEPT_CHARSET'  => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
             'HTTP_ACCEPT_ENCODING' => 'gzip,deflate',
             'HTTP_ACCEPT_LANGUAGE' => 'en-gb,en;q=0.5',
-            'HTTP_CONNECTION' => 'keep-alive',
-            'HTTP_HOST' => 'www.blakesimpson.co.uk',
-            'HTTP_REFERER' => 'http://previous.url.com',
-            'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
-            'HTTPS' => '1',
-            'REMOTE_ADDR' => '193.60.168.69',
-            'REMOTE_HOST' => 'Client server\'s host name',
-            'REMOTE_PORT' => '5390',
-            'SCRIPT_FILENAME' => '/path/to/this/script.php',
-            'SERVER_ADMIN' => 'webmaster@blakesimpson.co.uk',
-            'SERVER_PORT' => '80',
-            'SERVER_SIGNATURE' => 'Version signature: 5.123',
-            'SCRIPT_NAME' => '/blog/article.php',
-            'REQUEST_URI' => '/blog/article.php?id=100&user=foo',
+            'HTTP_CONNECTION'      => 'keep-alive',
+            'HTTP_HOST'            => 'www.blakesimpson.co.uk',
+            'HTTP_REFERER'         => 'http://previous.url.com',
+            'HTTP_USER_AGENT'      => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
+            'HTTPS'                => '1',
+            'REMOTE_ADDR'          => '193.60.168.69',
+            'REMOTE_HOST'          => 'Client server\'s host name',
+            'REMOTE_PORT'          => '5390',
+            'SCRIPT_FILENAME'      => '/path/to/this/script.php',
+            'SERVER_ADMIN'         => 'webmaster@blakesimpson.co.uk',
+            'SERVER_PORT'          => '80',
+            'SERVER_SIGNATURE'     => 'Version signature: 5.123',
+            'SCRIPT_NAME'          => '/blog/article.php',
+            'REQUEST_URI'          => '/blog/article.php?id=100&user=foo',
         ];
     }
 
@@ -189,7 +190,7 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
 
         $serverRequest = new ServerRequest('GET', 'http://example.com?foo=bar');
         $this->assertEquals($serverRequest->getQueryParams(), [
-            'foo' => 'bar'
+            'foo' => 'bar',
         ]);
     }
 
@@ -211,7 +212,7 @@ class ServerRequestTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($serverRequest->getUri()->getPath(), '/blog/article.php');
         $this->assertEquals('POST', $serverRequest->getMethod());
-        $this->assertEquals($this->dataQueryFromGlobals() , $serverRequest->getQueryParams());
+        $this->assertEquals($this->dataQueryFromGlobals(), $serverRequest->getQueryParams());
         $this->assertEquals($this->dataCookiesFromGlobals(), $serverRequest->getCookieParams());
         $this->assertEquals($this->dataCookiesFromGlobals(), $serverRequest->getCookieParams());
         $this->assertEquals($this->dataBodyFromGlobals(), $serverRequest->getParsedBody());

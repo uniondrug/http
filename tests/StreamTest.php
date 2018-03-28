@@ -1,5 +1,6 @@
 <?php
-use FastD\Http\Stream;
+
+use Uniondrug\Http\Stream;
 
 /**
  *

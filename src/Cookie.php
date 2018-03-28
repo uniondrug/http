@@ -9,7 +9,6 @@
 
 namespace Uniondrug\Http;
 
-
 /**
  * Class Cookie
  *
@@ -56,12 +55,12 @@ class Cookie
 
     /**
      * @param        $name
-     * @param null $value
-     * @param int $expire
+     * @param null   $value
+     * @param int    $expire
      * @param string $path
-     * @param null $domain
-     * @param bool $secure
-     * @param bool $httpOnly
+     * @param null   $domain
+     * @param bool   $secure
+     * @param bool   $httpOnly
      */
     public function __construct(
         $name,
@@ -71,7 +70,8 @@ class Cookie
         $domain = null,
         $secure = null,
         $httpOnly = null
-    ) {
+    )
+    {
         // from PHP source code
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
             throw new \InvalidArgumentException(sprintf('The cookie name "%s" contains invalid characters.', $name));
@@ -146,20 +146,20 @@ class Cookie
      */
     public function asString()
     {
-        $str = urlencode($this->name).'=';
-        if ('' === (string)$this->value) {
-            $str .= 'deleted; expires='.gmdate("D, d-M-Y H:i:s T", time() - 31536001);
+        $str = urlencode($this->name) . '=';
+        if ('' === (string) $this->value) {
+            $str .= 'deleted; expires=' . gmdate("D, d-M-Y H:i:s T", time() - 31536001);
         } else {
             $str .= urlencode($this->value);
         }
         if ($this->expire > 0) {
-            $str .= '; expires='.gmdate("D, d-M-Y H:i:s T", time () + $this->expire);
+            $str .= '; expires=' . gmdate("D, d-M-Y H:i:s T", time() + $this->expire);
         }
         if ($this->path) {
-            $str .= '; path='.$this->path;
+            $str .= '; path=' . $this->path;
         }
         if ($this->domain) {
-            $str .= '; domain='.$this->domain;
+            $str .= '; domain=' . $this->domain;
         }
         if (true === $this->secure) {
             $str .= '; secure';
@@ -178,17 +178,18 @@ class Cookie
      */
     public function __toString()
     {
-        return (string)$this->value;
+        return (string) $this->value;
     }
 
     /**
-     * @param $name
+     * @param      $name
      * @param null $value
      * @param null $expire
      * @param null $path
      * @param null $domain
      * @param null $secure
      * @param null $httpOnly
+     *
      * @return Cookie
      */
     public static function normalizer(
@@ -199,7 +200,8 @@ class Cookie
         $domain = null,
         $secure = null,
         $httpOnly = null
-    ) {
+    )
+    {
         return new static($name, $value, $expire, $path, $domain, $secure, $httpOnly);
     }
 }

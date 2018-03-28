@@ -53,25 +53,26 @@ class Stream implements StreamInterface
      * @var array
      */
     protected static $modeHash = [
-        'read' => [
-            'r' => true, 'w+' => true, 'r+' => true, 'x+' => true, 'c+' => true,
-            'rb' => true, 'w+b' => true, 'r+b' => true, 'x+b' => true,
+        'read'  => [
+            'r'   => true, 'w+' => true, 'r+' => true, 'x+' => true, 'c+' => true,
+            'rb'  => true, 'w+b' => true, 'r+b' => true, 'x+b' => true,
             'c+b' => true, 'rt' => true, 'w+t' => true, 'r+t' => true,
-            'x+t' => true, 'c+t' => true, 'a+' => true
+            'x+t' => true, 'c+t' => true, 'a+' => true,
         ],
         'write' => [
-            'w' => true, 'w+' => true, 'rw' => true, 'r+' => true, 'x+' => true,
-            'c+' => true, 'wb' => true, 'w+b' => true, 'r+b' => true,
+            'w'   => true, 'w+' => true, 'rw' => true, 'r+' => true, 'x+' => true,
+            'c+'  => true, 'wb' => true, 'w+b' => true, 'r+b' => true,
             'x+b' => true, 'c+b' => true, 'w+t' => true, 'r+t' => true,
-            'x+t' => true, 'c+t' => true, 'a' => true, 'a+' => true
-        ]
+            'x+t' => true, 'c+t' => true, 'a' => true, 'a+' => true,
+        ],
     ];
 
     /**
      * Stream constructor.
      *
      * @see http://php.net/manual/zh/wrappers.php.php
-     * @param $stream
+     *
+     * @param        $stream
      * @param string $mode
      */
     public function __construct($stream, $mode = 'r')
@@ -115,6 +116,7 @@ class Stream implements StreamInterface
     {
         try {
             $this->rewind();
+
             return $this->getContents();
         } catch (RuntimeException $e) {
             return '';
@@ -145,6 +147,7 @@ class Stream implements StreamInterface
     {
         $resource = $this->resource;
         $this->resource = null;
+
         return $resource;
     }
 
@@ -160,6 +163,7 @@ class Stream implements StreamInterface
         }
 
         $stats = fstat($this->resource);
+
         return $stats['size'];
     }
 
@@ -211,12 +215,14 @@ class Stream implements StreamInterface
      * Seek to a position in the stream.
      *
      * @link http://www.php.net/manual/en/function.fseek.php
+     *
      * @param int $offset Stream offset
      * @param int $whence Specifies how the cursor position will be calculated
      *                    based on the seek offset. Valid values are identical to the built-in
      *                    PHP $whence values for `fseek()`.  SEEK_SET: Set position equal to
      *                    offset bytes SEEK_CUR: Set position to current location plus offset
      *                    SEEK_END: Set position to end-of-stream plus offset.
+     *
      * @return bool
      * @throws RuntimeException on failure.
      */
@@ -268,6 +274,7 @@ class Stream implements StreamInterface
      * Write data to the stream.
      *
      * @param string $string The string that is to be written.
+     *
      * @return int Returns the number of bytes written to the stream.
      * @throws RuntimeException on failure.
      */
@@ -302,6 +309,7 @@ class Stream implements StreamInterface
      * @param int $length Read up to $length bytes from the object and return
      *                    them. Fewer than $length bytes may be returned if underlying stream
      *                    call returns fewer bytes.
+     *
      * @return string Returns the data read from the stream, or an empty string
      *                    if no bytes are available.
      * @throws RuntimeException if an error occurs.
@@ -316,7 +324,7 @@ class Stream implements StreamInterface
             throw new RuntimeException('Stream is not readable');
         }
 
-        $string = fread($this->resource, (int)$length);
+        $string = fread($this->resource, (int) $length);
 
         if (false === $string) {
             throw new \RuntimeException('Unable to read from stream');
@@ -362,7 +370,9 @@ class Stream implements StreamInterface
      * stream_get_meta_data() function.
      *
      * @link http://php.net/manual/en/function.stream-get-meta-data.php
+     *
      * @param string $key Specific metadata to retrieve.
+     *
      * @return array|mixed|null Returns an associative array if no key is
      *                    provided. Returns a specific key value if a key is provided and the
      *                    value is found, or null if the key is not found.

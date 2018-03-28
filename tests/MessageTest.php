@@ -1,5 +1,6 @@
 <?php
-use FastD\Http\Message;
+
+use Uniondrug\Http\Message;
 
 /**
  *
@@ -35,8 +36,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
     {
         $this->message
             ->withHeader('name', 'jan')
-            ->withAddedHeader('name', 'janhuang')
-        ;
+            ->withAddedHeader('name', 'janhuang');
         $this->assertEquals(['jan', 'janhuang'], $this->message->getHeader('name'));
         $this->assertEquals('jan,janhuang', $this->message->getHeaderLine('name'));
     }

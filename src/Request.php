@@ -63,9 +63,9 @@ class Request extends Message implements RequestInterface
     /**
      * Request constructor.
      *
-     * @param $method
-     * @param $uri
-     * @param array $headers
+     * @param                 $method
+     * @param                 $uri
+     * @param array           $headers
      * @param StreamInterface $body
      */
     public function __construct($method, $uri, array $headers = [], StreamInterface $body = null)
@@ -112,7 +112,9 @@ class Request extends Message implements RequestInterface
      *
      * @link http://tools.ietf.org/html/rfc7230#section-5.3 (for the various
      *     request-target forms allowed in request messages)
+     *
      * @param mixed $requestTarget
+     *
      * @return $this
      */
     public function withRequestTarget($requestTarget)
@@ -144,6 +146,7 @@ class Request extends Message implements RequestInterface
      * changed request method.
      *
      * @param string $method Case-sensitive method.
+     *
      * @return static
      * @throws InvalidArgumentException for invalid HTTP methods.
      */
@@ -203,8 +206,10 @@ class Request extends Message implements RequestInterface
      * new UriInterface instance.
      *
      * @link http://tools.ietf.org/html/rfc3986#section-4.3
-     * @param UriInterface $uri New request URI to use.
-     * @param bool $preserveHost Preserve the original state of the Host header.
+     *
+     * @param UriInterface $uri          New request URI to use.
+     * @param bool         $preserveHost Preserve the original state of the Host header.
+     *
      * @return static
      */
     public function withUri(UriInterface $uri, $preserveHost = false)
@@ -225,6 +230,7 @@ class Request extends Message implements RequestInterface
     /**
      * @param $key
      * @param $value
+     *
      * @return $this
      */
     public function withOption($key, $value)
@@ -236,6 +242,7 @@ class Request extends Message implements RequestInterface
 
     /**
      * @param array $options
+     *
      * @return $this
      */
     public function withOptions(array $options)
@@ -248,6 +255,7 @@ class Request extends Message implements RequestInterface
     /**
      * @param $username
      * @param $password
+     *
      * @return $this
      */
     public function withBasicAuthentication($username, $password)
@@ -260,6 +268,7 @@ class Request extends Message implements RequestInterface
 
     /**
      * @param $referer
+     *
      * @return $this
      */
     public function withReferrer($referer)
@@ -271,13 +280,14 @@ class Request extends Message implements RequestInterface
 
     /**
      * @param array|string $data
-     * @param array $headers
+     * @param array        $headers
+     *
      * @return Response
      */
     public function send($data = [], array $headers = [])
     {
         $ch = curl_init();
-        $url = (string)$this->uri;
+        $url = (string) $this->uri;
 
         is_array($data) && $data = http_build_query($data);
 
@@ -310,7 +320,8 @@ class Request extends Message implements RequestInterface
         }
 
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch); unset($ch);
+        curl_close($ch);
+        unset($ch);
         list($responseHeaders, $response) = explode("\r\n\r\n", $response, 2);
         $responseHeaders = preg_split('/\r\n/', $responseHeaders, null, PREG_SPLIT_NO_EMPTY);
 

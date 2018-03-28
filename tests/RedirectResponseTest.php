@@ -7,10 +7,8 @@
  * @link      http://www.fast-d.cn/
  */
 
-
-use FastD\Http\RedirectResponse;
-use FastD\Http\Response;
-
+use Uniondrug\Http\RedirectResponse;
+use Uniondrug\Http\Response;
 
 class RedirectResponseTest extends PHPUnit_Framework_TestCase
 {

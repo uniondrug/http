@@ -6,8 +6,8 @@
  * @link      https://www.github.com/janhuang
  * @link      http://www.fast-d.cn/
  */
-namespace Uniondrug\Http;
 
+namespace Uniondrug\Http;
 
 /**
  * Class PhpInputStream
@@ -62,12 +62,13 @@ class PhpInputStream extends Stream
 
     /**
      * @param int $length
+     *
      * @return string
      */
     public function read($length)
     {
         $content = parent::read($length);
-        if ($content && ! $this->reachedEof) {
+        if ($content && !$this->reachedEof) {
             $this->cache .= $content;
         }
 
@@ -80,6 +81,7 @@ class PhpInputStream extends Stream
 
     /**
      * @param int $maxLength
+     *
      * @return string
      */
     public function getContents($maxLength = -1)

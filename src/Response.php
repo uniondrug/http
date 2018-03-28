@@ -14,7 +14,6 @@ use DateTimeZone;
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 
-
 /**
  * Class Response
  *
@@ -118,14 +117,15 @@ class Response extends Message implements ResponseInterface
      * Status codes translation table.
      *
      * The list of codes is complete according to the
-     * {@link http://www.iana.org/assignments/http-status-codes/ Hypertext Transfer Protocol (HTTP) Status Code Registry}
+     * {@link http://www.iana.org/assignments/http-status-codes/ Hypertext Transfer Protocol (HTTP) Status Code
+     * Registry}
      * (last updated 2012-02-13).
      *
      * Unless otherwise noted, the status code is defined in RFC2616.
      *
      * @var array
      */
-    public static $statusTexts = array(
+    public static $statusTexts = [
         100 => 'Continue',
         101 => 'Switching Protocols',
         102 => 'Processing',            // RFC2518
@@ -186,14 +186,14 @@ class Response extends Message implements ResponseInterface
         508 => 'Loop Detected',                                               // RFC5842
         510 => 'Not Extended',                                                // RFC2774
         511 => 'Network Authentication Required',                             // RFC6585
-    );
+    ];
 
     /**
      * Response constructor.
      *
      * @param string $content
-     * @param int $statusCode
-     * @param array $headers
+     * @param int    $statusCode
+     * @param array  $headers
      */
     public function __construct(
         $content = '',
@@ -262,13 +262,14 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param      $key
+     * @param      $value
      * @param null $expire
      * @param null $path
      * @param null $domain
      * @param null $secure
      * @param null $httpOnly
+     *
      * @return $this
      */
     public function withCookie($key, $value, $expire = null, $path = null, $domain = null, $secure = null, $httpOnly = null)
@@ -280,6 +281,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param Cookie[] $cookie
+     *
      * @return $this
      */
     public function withCookieParams(array $cookie)
@@ -299,6 +301,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param $fd
+     *
      * @return $this
      */
     public function withFileDescriptor($fd)
@@ -318,6 +321,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param $content
+     *
      * @return $this
      */
     public function withContent($content)
@@ -339,6 +343,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param $contentType
+     *
      * @return $this
      */
     public function withContentType($contentType)
@@ -358,6 +363,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param $cacheControl
+     *
      * @return $this
      */
     public function withCacheControl($cacheControl)
@@ -390,7 +396,7 @@ class Response extends Message implements ResponseInterface
      * Sets the ETag value.
      *
      * @param string|null $eTag The ETag unique identifier or null to remove the header
-     * @param bool $weak Whether you want a weak ETag or not
+     * @param bool        $weak Whether you want a weak ETag or not
      *
      * @return Response
      */
@@ -404,6 +410,7 @@ class Response extends Message implements ResponseInterface
 
     /**
      * @param $location
+     *
      * @return $this
      */
     public function withLocation($location)
@@ -527,6 +534,7 @@ class Response extends Message implements ResponseInterface
      * Passing null as value will remove the header.
      *
      * @param DateTime|null $date A \DateTime instance or null to remove the header
+     *
      * @return $this
      */
     public function withLastModified(DateTime $date)
@@ -696,10 +704,12 @@ class Response extends Message implements ResponseInterface
      *
      * @link http://tools.ietf.org/html/rfc7231#section-6
      * @link http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-     * @param int $code The 3-digit integer result code to set.
+     *
+     * @param int    $code         The 3-digit integer result code to set.
      * @param string $reasonPhrase The reason phrase to use with the
      *                             provided status code; if none is provided, implementations MAY
      *                             use the defaults as suggested in the HTTP specification.
+     *
      * @return static
      * @throws InvalidArgumentException For invalid status code arguments.
      */

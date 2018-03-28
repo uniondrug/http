@@ -122,7 +122,9 @@ class UploadedFile extends CURLFile implements UploadedFileInterface
      *
      * @see http://php.net/is_uploaded_file
      * @see http://php.net/move_uploaded_file
+     *
      * @param string $targetPath Path to which to move the uploaded file.
+     *
      * @return string
      * @throws \InvalidArgumentException if the $targetPath specified is invalid.
      * @throws \RuntimeException on any error during the move operation, or on
@@ -135,7 +137,6 @@ class UploadedFile extends CURLFile implements UploadedFileInterface
             . hash_file('md5', $this->tmpName)
             . '.'
             . pathinfo($this->postname, PATHINFO_EXTENSION);
-
 
         if ('cli' === PHP_SAPI) {
             if (!rename($this->tmpName, $targetFile)) {
@@ -235,6 +236,7 @@ class UploadedFile extends CURLFile implements UploadedFileInterface
 
     /**
      * @param array $file
+     *
      * @return UploadedFile
      */
     public static function normalizer(array $file)

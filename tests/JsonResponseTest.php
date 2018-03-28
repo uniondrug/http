@@ -7,8 +7,7 @@
  * @link      http://www.fast-d.cn/
  */
 
-
-use FastD\Http\JsonResponse;
+use Uniondrug\Http\JsonResponse;
 
 class JsonResponseTest extends PHPUnit_Framework_TestCase
 {
