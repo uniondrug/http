@@ -1,6 +1,6 @@
 {
   "name": "uniondrug/http",
-  "description": "Uniondrug Http Component",
+  "description": "Uniondrug Http Component for uniondrug/framework",
   "license": "MIT",
   "type": "library",
   "keywords": [
@@ -11,6 +11,10 @@
     {
       "name": "janhuang",
       "email": "bboyjanhuang@gmail.com"
+    },
+    {
+      "name": "Uniondrug Dev Team",
+      "email": "dev@uniondrug.cn"
     }
   ],
   "require": {
